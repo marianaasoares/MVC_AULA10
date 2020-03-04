@@ -10,22 +10,25 @@ namespace Aula10_MVC_.Controllers
 {
     public class PessoaController : Controller
     {
-        private readonly PessoaRepository _pessoaRepository;
+        private readonly PessoaMdfRepository _pessoaRepository;
 
         public PessoaController()
         {
-            _pessoaRepository = new PessoaRepository();
+            _pessoaRepository = new PessoaMdfRepository();
         }
 
         public IActionResult Index()
         {
-            return View();
+            var pessoas = _pessoaRepository.GetAll();
+
+            return View(pessoas);
+            
         }
 
         // GET: Product/Create
         public ActionResult Create()
         {
-            return View(_pessoaRepository.GetAll());
+            return View();
         }
 
         // POST: Product/Create
